@@ -47,7 +47,6 @@ public class S256Point extends Point{
 		BigInteger sInv = sig.getS().modPow(N.subtract(BigInteger.valueOf(2)), N);
 		BigInteger u = z.multiply(sInv).mod(N);
 		BigInteger v = sig.getR().multiply(sInv).mod(N);
-		Point G = new Point(X, Y, A, B);
 		Point total = G.multiply(u, PRIME).add(this.multiply(v, PRIME));
 		return total.getFieldElementX().getNum().equals(sig.getR());
 	}

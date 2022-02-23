@@ -122,7 +122,6 @@ public class Point {
 	}
 
 	public Point multiply(BigInteger scale, BigInteger prime) {
-		prime = prime != null ? prime : PRIME;
 		scale = scale.mod(prime);
 		Point result;
 		if (this.fieldElementA != null && this.fieldElementB != null) {
@@ -140,5 +139,10 @@ public class Point {
 		}
 		return result;
 	}
+
+	public Point multiply(BigInteger scale) {
+		return multiply(scale, PRIME);
+	}
+
 
 }

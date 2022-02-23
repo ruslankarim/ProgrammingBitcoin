@@ -30,9 +30,9 @@ public class PrivateKey {
 
 	public Signature sign(BigInteger z) throws NoSuchAlgorithmException, InvalidKeyException {
 		BigInteger k = deterministicK(z);
-		BigInteger r = G.multiply(k, null).getFieldElementX().getNum();
+		BigInteger r = G.multiply(k).getFieldElementX().getNum();
 		BigInteger kInv = k.modPow(N.subtract(BigInteger.valueOf(2)), N);
-		BigInteger s = (r.multiply(secret).add(z)).multiply(kInv.mod(N));
+		BigInteger s = (r.multiply(this.secret).add(z)).multiply(kInv.mod(N));
 		if (s.compareTo(N.divide(BigInteger.valueOf(2))) > 0) {
 			s = N.subtract(s);
 		}
@@ -69,9 +69,11 @@ public class PrivateKey {
 		Mac mac = Mac.getInstance(ALGORITHM);
 		mac.init(secretKeySpec);
 		byte [] v = bytes[1];
-		if (bytes.length > 2) {
+		if (bytes.length == 4) {
+			byte [] zBytes = bytes[2];
+			byte [] secretBytes = bytes[3];
 			v = ArrayUtils.addAll(
-					ArrayUtils.addAll(v, bytes[2]), bytes[3]
+					ArrayUtils.addAll(v, zBytes), secretBytes
 			);
 		}
 

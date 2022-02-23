@@ -15,7 +15,8 @@ public class PrivateKeyTest {
 
 	@Test
 	public void signTest() throws NoSuchAlgorithmException, InvalidKeyException {
-		PrivateKey privateKey = new PrivateKey(new BigInteger(N.bitLength(), new Random()));
+		BigInteger secret = new BigInteger(N.bitLength(), new Random());
+		PrivateKey privateKey = new PrivateKey(secret);
 		BigInteger z = new BigInteger(BigInteger.valueOf(2).pow(256).bitLength(), new Random());
 		Signature signature = privateKey.sign(z);
 		Assertions.assertTrue(privateKey.getPoint().verify(z, signature));
