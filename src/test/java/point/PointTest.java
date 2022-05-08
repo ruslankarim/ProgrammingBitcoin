@@ -215,4 +215,23 @@ public class PointTest {
 
 	}
 
+	@Test
+	public void exampleForScalarPoint() {
+		BigInteger prime = BigInteger.valueOf(223);
+		FieldElement fieldElementX = new FieldElement(BigInteger.valueOf(170), prime);
+		FieldElement fieldElementY = new FieldElement(BigInteger.valueOf(142), prime);
+		FieldElement fieldElementA = new FieldElement(BigInteger.valueOf(0), prime);
+		FieldElement fieldElementB = new FieldElement(BigInteger.valueOf(7), prime);
+
+		Point point = new Point(fieldElementX, fieldElementY, fieldElementA, fieldElementB);
+		Point point2 = point.multiply(BigInteger.valueOf(2));
+		Point point3 = point.multiply(BigInteger.valueOf(3));
+		Point point4 = point.multiply(BigInteger.valueOf(4));
+		Point point5 = point.multiply(BigInteger.valueOf(5));
+		Point point6 = point.multiply(BigInteger.valueOf(6));
+		Point point7 = point.multiply(BigInteger.valueOf(7));
+
+		System.out.println(point7);
+	}
+
 }

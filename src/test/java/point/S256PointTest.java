@@ -3,6 +3,7 @@ package point;
 import fieldElement.S256FieldElement;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import privateKey.PrivateKey;
 import signature.Signature;
 
 import java.math.BigInteger;
@@ -69,6 +70,23 @@ public class S256PointTest {
 		s = new BigInteger("c7207fee197d27c618aea621406f6bf5ef6fca38681d82b2f06fddbdce6feab6", 16);
 
 		Assertions.assertTrue(point.verify(z, new Signature(r, s)));
+
+	}
+
+	@Test
+	public void secTest() {
+		PrivateKey privateKey = new PrivateKey(BigInteger.valueOf(5000));
+		byte[] bytes = privateKey.getPublicPoint().sec(true);
+		System.out.println();
+	}
+
+	@Test
+	public void parseTest() {
+		PrivateKey privateKey = new PrivateKey(BigInteger.valueOf(5000));
+		byte[] bytes = privateKey.getPublicPoint().sec(true);
+		S256Point point = S256Point.parse(bytes);
+		point.getS256FieldElementX().sqrt();
+		System.out.println(point);
 
 	}
 

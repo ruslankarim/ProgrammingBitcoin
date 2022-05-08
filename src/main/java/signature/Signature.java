@@ -15,4 +15,10 @@ public class Signature {
 
 	private BigInteger s;
 
+	public byte[] der() {
+		byte[] bytes = this.r.toByteArray();
+		//not implemented
+		return null;
+	}
+
 }

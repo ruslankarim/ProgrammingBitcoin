@@ -21,6 +21,6 @@ public class PrivateKeyTest {
 		PrivateKey privateKey = new PrivateKey(secret);
 		BigInteger z = new BigInteger(BigInteger.valueOf(2).pow(256).bitLength(), new Random());
 		Signature signature = privateKey.sign(z);
-		Assertions.assertTrue(privateKey.getPoint().verify(z, signature));
+		Assertions.assertTrue(privateKey.getPublicPoint().verify(z, signature));
 	}
 }

@@ -23,11 +23,11 @@ public class PrivateKey {
 	private static final String KECCAK = "Keccak-256";
 
 	private final BigInteger secret;
-	private final S256Point point;
+	private final S256Point publicPoint;
 
 	public PrivateKey(BigInteger secret) {
 		this.secret = secret;
-		this.point = G.multiply(this.secret);
+		this.publicPoint = G.multiply(this.secret);
 	}
 
 	public Signature sign(BigInteger z) throws NoSuchAlgorithmException, InvalidKeyException {

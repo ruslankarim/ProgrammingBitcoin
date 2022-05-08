@@ -17,5 +17,9 @@ public class S256FieldElement extends FieldElement{
 		super(num, PRIME);
 	}
 
+	public S256FieldElement sqrt() {
+		return new S256FieldElement(this.getNum().modPow((PRIME.add(BigInteger.ONE)).divide(BigInteger.valueOf(4)), PRIME));
+	}
+
 
 }
